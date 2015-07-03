@@ -1,0 +1,74 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+import com.mysql.jdbc.Statement;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception
+	{
+	
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");
+			
+		String imie = "Kuba";
+		String nazwisko = "Janiec";
+		String pesel = "12345678909";
+		String ulica = "Poniatowskiego";
+		int nrUlicy = 1;
+		int nrDomu = 2;
+		String miejscowosc = "Stalowa Wola";
+		
+	
+		//------------sprawdzanie hasla
+		Scanner user_input = new Scanner( System.in );	
+		String databaseUsername = "";
+		String databasePassword = "";
+		
+		System.out.print("Enter Username: ");
+		String login = user_input.next();
+	  	System.out.print("Enter Password: ");
+	  	String haslo = user_input.next( );
+		
+	  	PreparedStatement stmt = con.prepareStatement("SELECT * FROM pass WHERE login='" + login +"'");	    
+	    ResultSet rs = stmt.executeQuery();
+
+	    while (rs.next()) {
+	        databaseUsername = rs.getString("login");
+	        databasePassword = rs.getString("haslo");
+	    }
+	    if (login.equals(databaseUsername) && haslo.equals(databasePassword)) {
+	        System.out.println("Successful Login!\n----");
+	    } else {
+	        System.out.println("Incorrect Password\n----");
+	    }
+	    //-----------------------------------------------------------
+	    
+		//------------dodawanie hasla		
+		System.out.print("Enter Username: ");
+		login = user_input.next();
+	  	System.out.print("Enter Password: ");
+	  	haslo = user_input.next( );
+		
+	  	java.sql.Statement singup = con.createStatement();	    
+	    singup.executeUpdate("INSERT INTO pass "+ "VALUES ('"+login+"','"+haslo+"' )");
+	    //-----------------------------------------------------------
+	  	
+		java.sql.Statement dodaj = con.createStatement();
+	//	dodaj.executeUpdate("INSERT INTO pacjent " + "VALUES ('"+imie+"', '"+nazwisko+"', '"+pesel+"', '"+ulica+"', '"+nrUlicy+"', '"+nrDomu+"','"+miejscowosc+"')");
+		
+		PreparedStatement statement = con.prepareStatement("select * from pacjent");		
+		ResultSet result = statement.executeQuery();
+			
+		while(result.next())
+		{
+			System.out.println(result.getString(1)+ " " + result.getString(2)+ " " + result.getString(3)+ " " + result.getString(4)+ " " + result.getString(5)+ " " + result.getString(6)+ " " + result.getString(7));
+		}
+		
+	}
+}

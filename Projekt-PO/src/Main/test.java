@@ -1,4 +1,7 @@
-package Main;
+
+
+
+/*package Main;
 
 import java.io.*;
 import java.util.Scanner;
@@ -15,6 +18,11 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class test extends JFrame implements Serializable {
 	
@@ -60,7 +68,7 @@ public class test extends JFrame implements Serializable {
     }
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
-			
+		
 		EventQueue.invokeLater(new Runnable() {
 	        
             @Override
@@ -68,19 +76,10 @@ public class test extends JFrame implements Serializable {
                 test layout = new test();
                 layout.setVisible(true);
             }
-        });
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		/*
+        });	
+						
+							
+//-------------------------------------------------------------------------------
 		System.out.println("MENU");
 		System.out.println("1. Dodanie nowego pacjenta");
 		
@@ -127,7 +126,8 @@ public class test extends JFrame implements Serializable {
 				System.out.println("Dane nie zosta≥y zapisane. Wprowadü ponownie dane");
 				Opcja = 1;
 			}
-			*/
+//-----------------------------------------------------------------	
 	    	        
 	}
 }
+*/

@@ -1,0 +1,51 @@
+package przycisk;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+
+public class danePacjenta {
+
+	private JFrame frame;
+	private JTextField txtAsd;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					danePacjenta window = new danePacjenta();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public danePacjenta() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		txtAsd = new JTextField();
+		txtAsd.setText("asd");
+		frame.getContentPane().add(txtAsd, BorderLayout.CENTER);
+		txtAsd.setColumns(10);
+	}
+
+}

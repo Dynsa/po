@@ -1,19 +1,28 @@
 package lekarz;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Lekarz {
+	private int ID;
 	private String Imiê;
 	private String Nazwisko;
 	private String Specjalizacja;
 	private int NrPokoju;
 	private String Opis;
+	private int iloscOcen;
+	private int sumaOcen;
 	
 	public Lekarz(){}
-	public Lekarz(String Imiê, String Nazwisko, String Specjalizacja, int NrPokoju, String Opis){
+	public Lekarz(int ID,String Imiê, String Nazwisko, String Specjalizacja, int NrPokoju, String Opis){
+		this.ID = ID;
 		this.Imiê = Imiê;
 		this.Nazwisko = Nazwisko;
 		this.Specjalizacja = Specjalizacja;
 		this.NrPokoju = NrPokoju;
 		this.Opis = Opis;
+		System.out.println(".");
 	}
 	
 	public String Imiê(){
@@ -30,6 +39,24 @@ public class Lekarz {
 	}
 	public String Opis(){
 		return Opis;
+	}
+	
+	public void dodajOcene(int ocena) throws Exception{
+		int suma,liczba;
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");
+		
+		PreparedStatement stmt = con.prepareStatement("SELECT LiczbaOcen,SumaOcen FROM lekarz WHERE ID=" + this.ID);		    
+	    ResultSet result = stmt.executeQuery();
+	    while(result.next())
+		{
+	    	liczba = Integer.parseInt(result.getString(1));
+	    	suma = Integer.parseInt(result.getString(2));
+	    	suma +=ocena;
+	    	liczba++;
+		    java.sql.Statement dodaj = con.createStatement();
+		    dodaj.executeUpdate("UPDATE lekarz " + "SET LiczbaOcen="+liczba+" , SumaOcen="+suma+" WHERE ID="+this.ID);
+		}
 	}
 	
 }

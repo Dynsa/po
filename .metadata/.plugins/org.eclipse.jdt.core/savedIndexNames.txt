@@ -4,13 +4,16 @@ INDEX VERSION 1.127+C:\Users\boom\Desktop\Politechnika Krakowska\po\.metadata\.p
 355369697.index
 323251068.index
 1722026288.index
+3831877957.index
 3954291735.index
 3716007315.index
 1045485630.index
+1856722025.index
 605290374.index
 4187470955.index
 1787405673.index
 2535676096.index
+2187670599.index
 2674037006.index
 1337478678.index
 994834796.index
