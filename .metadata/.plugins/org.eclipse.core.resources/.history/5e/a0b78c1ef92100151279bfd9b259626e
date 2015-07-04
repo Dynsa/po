@@ -1,0 +1,80 @@
+package lekarz;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class Lekarz {
+	private int ID;
+	private String Imiê;
+	private String Nazwisko;
+	private String Specjalizacja;
+	private int NrPokoju;
+	private String Opis;
+	private int iloscOcen;
+	private int sumaOcen;
+	
+	public Lekarz(){}
+	public Lekarz(int ID,String Imiê, String Nazwisko, String Specjalizacja, int NrPokoju, String Opis){
+		this.ID = ID;
+		this.Imiê = Imiê;
+		this.Nazwisko = Nazwisko;
+		this.Specjalizacja = Specjalizacja;
+		this.NrPokoju = NrPokoju;
+		this.Opis = Opis;
+		System.out.println(".");
+	}
+	
+	public String Imiê(){
+		return Imiê;
+	}
+	public String Nazwisko(){
+		return Nazwisko;
+	}
+	public String Specjalizacja(){
+		return Specjalizacja;
+	}
+	public int NrPokoju(){
+		return NrPokoju;
+	}
+	public String Opis(){
+		return Opis;
+	}
+	
+	public void dodajOcene(int ocena) throws Exception{
+		int suma,liczba;
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");
+		
+		PreparedStatement stmt = con.prepareStatement("SELECT LiczbaOcen,SumaOcen FROM lekarz WHERE ID=" + this.ID);		    
+	    ResultSet result = stmt.executeQuery();
+	    while(result.next())
+		{
+	    	liczba = Integer.parseInt(result.getString(1));
+	    	suma = Integer.parseInt(result.getString(2));
+	    	suma +=ocena;
+	    	liczba++;
+		    java.sql.Statement dodaj = con.createStatement();
+		    dodaj.executeUpdate("UPDATE lekarz " + "SET LiczbaOcen="+liczba+" , SumaOcen="+suma+" WHERE ID="+this.ID);
+		}
+	}
+	
+	public String wyswietlLekarza(int ID) throws Exception{
+
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");			
+			PreparedStatement statement = con.prepareStatement("select * from lekarz where ID="+ID);		
+			ResultSet result = statement.executeQuery();
+			String tekst = "";
+		//	while(result.next())
+		//	{
+				result.next();
+				tekst ="Imiê: "+result.getString(2)+ "\t Nazwisko: " + result.getString(3)+
+						" " + result.getString(4)+ " " + result.getString(5)+ " " + result.getString(6)+
+						" " + result.getString(7);
+				System.out.println(tekst);
+				return tekst;
+			//}
+	}
+	
+}

@@ -59,4 +59,19 @@ public class Lekarz {
 		}
 	}
 	
+	public String wyswietlLekarza(int ID) throws Exception{
+
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");			
+			PreparedStatement statement = con.prepareStatement("select * from lekarz where ID="+ID);		
+			ResultSet result = statement.executeQuery();
+			String tekst = "";
+				result.next();
+				tekst ="Imiê: "+result.getString(2)+ "\t\tNazwisko: " + result.getString(3)+
+						"\nSpecjalizacja: " + result.getString(4)+ "\tNr Pokoju: " + result.getString(5)+
+						"\nSrednia ocen: "+result.getFloat(8)/result.getFloat(7)+"\nOpis: " + result.getString(6);
+				return tekst;
+
+	}
+	
 }

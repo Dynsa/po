@@ -1,0 +1,94 @@
+package Main;
+import  lekarz.Lekarz;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+
+public class lekarze extends Shell {
+	private Table table;
+
+	/**
+	 * Launch the application.
+	 * @param args
+	 */
+	public static void main(String args[]) {
+		try {
+			Display display = Display.getDefault();
+			lekarze shell = new lekarze(display);
+			shell.open();
+			shell.layout();
+			while (!shell.isDisposed()) {
+				if (!display.readAndDispatch()) {
+					display.sleep();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the shell.
+	 * @param display
+	 */
+	public lekarze(Display display) {
+		super(display, SWT.SHELL_TRIM);
+		
+		table = new Table(this, SWT.BORDER | SWT.FULL_SELECTION);
+		table.setBounds(61, 56, 501, 352);
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+		
+		TableColumn tblclmnNewColumn = new TableColumn(table, SWT.NONE);
+		tblclmnNewColumn.setWidth(253);
+		tblclmnNewColumn.setText("Lekarz");
+		
+		TableColumn tblclmnNewColumn_1 = new TableColumn(table, SWT.NONE);
+		tblclmnNewColumn_1.setWidth(243);
+		tblclmnNewColumn_1.setText("Rezerwacje");
+		
+		Lekarz a = new Lekarz();
+		String tekst;
+		
+		TableItem lekarz1ti = new TableItem(table, SWT.NONE);
+		try {
+			tekst=a.wyswietlLekarza(123);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		lekarz1ti.setText("cos");
+
+		
+		TableItem lekarz2ti = new TableItem(table, SWT.NONE);
+		lekarz2ti.setText("New TableItem");
+		
+		TableItem lekarz3ti = new TableItem(table, SWT.NONE);
+		lekarz3ti.setText("New TableItem");
+		
+		TableItem lekarz4ti = new TableItem(table, SWT.NONE);
+		lekarz4ti.setText("New TableItem");
+		
+		TableItem lekarz5ti = new TableItem(table, SWT.NONE);
+		lekarz5ti.setText("New TableItem");
+		createContents();
+	}
+
+	/**
+	 * Create contents of the shell.
+	 */
+	protected void createContents() {
+		setText("Spis Lekarzy");
+		setSize(690, 473);
+
+	}
+
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
+	}
+}
