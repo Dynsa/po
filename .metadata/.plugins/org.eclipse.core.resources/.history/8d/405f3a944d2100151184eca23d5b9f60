@@ -1,0 +1,96 @@
+package Main;
+
+import java.io.*;
+import java.util.Scanner;
+
+import pacjent1.*;
+import lekarz.*;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+
+public class test extends JFrame implements Serializable {
+	
+    public test() {
+        initUI();
+    }
+
+    private void initUI() {
+        
+        setTitle("Simple example");
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+	public static void main(String[] args) throws IOException, ClassNotFoundException{
+			
+		EventQueue.invokeLater(new Runnable() {
+	        
+            @Override
+            public void run() {
+                test layout = new test();
+                layout.setVisible(true);
+            }
+        });
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		/*
+		System.out.println("MENU");
+		System.out.println("1. Dodanie nowego pacjenta");
+		
+		Scanner numer = new Scanner(System.in);
+		int Opcja = numer.nextInt();
+    
+		switch(Opcja){
+		case 1:
+			Pacjent a = new Pacjent();
+			Pacjent nowy = new Pacjent();
+			nowy = a.Nowy();
+			
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println("Poda³eœ nastêpuj¹ce dane: ");
+			
+			nowy.Wyœwietl();
+			
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println("Czy dane siê zgadzaj¹?");
+	
+			Scanner potw = new Scanner(System.in);
+			String Odp = potw.nextLine();
+	    
+			if(Odp.equals("tak") || Odp.equals("TAK") || Odp.equals("Tak")) {
+				FileWriter zapis = new FileWriter("Pacjenci.txt", true);
+			    BufferedWriter out = new BufferedWriter(zapis);
+			    out.write(nowy.Imiê() + "\t" + nowy.Nazwisko() + "\t" + nowy.PESEL() + "\t" + nowy.Adres.Ulica() + "\t" + nowy.Adres.NrUlicy() + "\\" + nowy.Adres.NrDomu() + "\t" + nowy.Adres.Miejscowoœæ());
+			    out.close();
+			    
+				System.out.println("Dodano!");
+				System.out.println(" ");
+				System.out.println(" ");
+				System.out.println(" ");
+			}
+	    
+			else {
+				System.out.println("Dane nie zosta³y zapisane. WprowadŸ ponownie dane");
+				Opcja = 1;
+			}
+			*/
+	    	        
+	}
+}
