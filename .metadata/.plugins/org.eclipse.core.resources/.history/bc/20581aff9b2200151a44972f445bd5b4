@@ -1,0 +1,81 @@
+package Main;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+
+public class glowne {
+	
+	private Text loginT;
+	private Text hasloT;
+
+	protected Shell shell;
+
+	/**
+	 * Launch the application.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+	    Display display = new Display();
+	    final signup rej = new signup(display);
+	    final lekarze lek = new lekarze(display);
+	    lek.open();      
+	    rej.open();
+		try {
+			glowne window = new glowne();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Open the window.
+	 */
+	public void open() {
+		Display display = Display.getDefault();
+		createContents();
+		shell.open();
+		shell.layout();
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+	}
+
+	/**
+	 * Create contents of the window.
+	 */
+	protected void createContents() {
+		shell = new Shell();
+		shell.setSize(450, 300);
+		shell.setText("SWT Application");
+		
+		Label lblLogin = new Label(shell, SWT.NONE);
+		lblLogin.setBounds(93, 85, 55, 15);
+		lblLogin.setText("Login");
+		
+		Label lblHaslo = new Label(shell, SWT.NONE);
+		lblHaslo.setBounds(93, 123, 55, 15);
+		lblHaslo.setText("Haslo");
+		
+		loginT = new Text(shell, SWT.BORDER);
+		loginT.setBounds(150, 80, 126, 21);
+		
+		hasloT = new Text(shell, SWT.BORDER);
+		hasloT.setBounds(150, 120, 126, 21);
+		
+		Button login = new Button(shell, SWT.NONE);
+		
+
+	}
+
+}
+
