@@ -1,0 +1,77 @@
+package Main;
+import javax.rmi.CORBA.ValueHandler;
+
+import org.eclipse.swt.*;
+import org.eclipse.swt.events.*;
+import org.eclipse.swt.layout.*;
+import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.custom.StackLayout;
+
+public class terminy {
+
+public static void main (String [] args) {
+	Display display = new Display ();
+
+	final Shell dialog = new Shell (display);
+	dialog.setLayout(new GridLayout(1, false));
+	
+	Button btnCheckButton = new Button(dialog, SWT.CHECK);
+	btnCheckButton.setText("8:00-9:30");
+	
+	Button btnCheckButton_1 = new Button(dialog, SWT.CHECK);
+	btnCheckButton_1.setText("9:30-11:00");
+	
+	Button btnCheckButton_2 = new Button(dialog, SWT.CHECK);
+	btnCheckButton_2.setText("11:00-12:30");
+	
+	Button btnCheckButton_3 = new Button(dialog, SWT.CHECK);
+	btnCheckButton_3.setText("12:30-14:00");
+	
+	Button btnCheckButton_4 = new Button(dialog, SWT.CHECK);
+	btnCheckButton_4.setText("14:00-15:30");
+
+	final DateTime calendar = new DateTime (dialog, SWT.CALENDAR | SWT.BORDER);
+	calendar.addSelectionListener (new SelectionAdapter () {
+		@Override
+		public void widgetSelected (SelectionEvent e) {
+			System.out.println ("Calendar date selected (MM/DD/YYYY) = " + (calendar.getMonth () + 1) + "/" + calendar.getDay () + "/" + calendar.getYear ());
+			if(calendar.getDay()==5){
+				btnCheckButton.setEnabled(false);
+				btnCheckButton_1.setEnabled(false);
+				btnCheckButton_2.setEnabled(false);
+			}
+			else
+			{
+				btnCheckButton.setEnabled(true);
+				btnCheckButton_1.setEnabled(true);
+				btnCheckButton_2.setEnabled(true);
+				btnCheckButton_3.setEnabled(true);
+				btnCheckButton_4.setEnabled(true);
+			}
+		}
+
+	});
+
+	Button ok = new Button (dialog, SWT.PUSH);
+	GridData gd_ok = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+	gd_ok.widthHint = 162;
+	ok.setLayoutData(gd_ok);
+	ok.setText ("Wybierz");
+	ok.addSelectionListener (new SelectionAdapter () {
+		@Override
+		public void widgetSelected (SelectionEvent e) {
+			System.out.println ("Calendar date selected (MM/DD/YYYY) = " + (calendar.getMonth () + 1) + "/" + calendar.getDay () + "/" + calendar.getYear ());
+			dialog.close ();
+		}
+
+	});
+	dialog.setDefaultButton (ok);
+	dialog.pack ();
+	dialog.open ();
+	
+	while (!dialog.isDisposed ()) {
+		if (!display.readAndDispatch ()) display.sleep ();
+	}
+	display.dispose ();
+}
+} 

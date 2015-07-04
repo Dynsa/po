@@ -1,0 +1,41 @@
+package Main;
+import org.eclipse.swt.*;
+import org.eclipse.swt.events.*;
+import org.eclipse.swt.layout.*;
+import org.eclipse.swt.widgets.*;
+
+public class terminy {
+
+public static void main (String [] args) {
+	Display display = new Display ();
+	final Shell shell = new Shell (display);
+	shell.setLayout(new FillLayout());
+
+			final DateTime calendar = new DateTime (shell, SWT.CALENDAR | SWT.BORDER);
+			final DateTime date = new DateTime (shell, SWT.DATE | SWT.SHORT);
+			final DateTime time = new DateTime (shell, SWT.TIME | SWT.SHORT);
+
+			new Label (shell, SWT.NONE);
+			new Label (shell, SWT.NONE);
+			Button ok = new Button (shell, SWT.PUSH);
+			ok.setText ("OK");
+			ok.setLayoutData(new GridData (SWT.FILL, SWT.CENTER, false, false));
+			ok.addSelectionListener (new SelectionAdapter () {
+				@Override
+				public void widgetSelected (SelectionEvent e) {
+					System.out.println ("Calendar date selected (MM/DD/YYYY) = " + (calendar.getMonth () + 1) + "/" + calendar.getDay () + "/" + calendar.getYear ());
+					System.out.println ("Date selected (MM/YYYY) = " + (date.getMonth () + 1) + "/" + date.getYear ());
+					System.out.println ("Time selected (HH:MM) = " + time.getHours () + ":" + (time.getMinutes () < 10 ? "0" : "") + time.getMinutes ());
+
+			shell.setDefaultButton (ok);
+			shell.pack ();
+			shell.open ();
+		}
+	});
+	
+	while (!shell.isDisposed ()) {
+		if (!display.readAndDispatch ()) display.sleep ();
+	}
+	display.dispose ();
+}
+} 

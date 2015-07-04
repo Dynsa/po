@@ -4,6 +4,8 @@ import  lekarz.Lekarz;
 import org.eclipse.swt.*;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class lekarze extends Shell {
 	private Table table;
@@ -36,6 +38,24 @@ public class lekarze extends Shell {
 		super(display, SWT.SHELL_TRIM);
 		
 		Button btnWizytaL1 = new Button(this, SWT.NONE);
+		btnWizytaL1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				try {
+					Display display = Display.getDefault();
+					wizyty term = new wizyty(display);
+					term.open();
+					while (!term.isDisposed()) {
+						if (!display.readAndDispatch()) {
+							display.sleep();
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
 		btnWizytaL1.setBounds(297, 113, 111, 55);
 		btnWizytaL1.setText("Um\u00F3w Wizyt\u0119");
 		

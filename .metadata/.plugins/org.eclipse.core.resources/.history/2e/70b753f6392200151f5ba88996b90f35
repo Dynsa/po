@@ -1,0 +1,23 @@
+package Main;
+import org.eclipse.swt.*;
+import org.eclipse.swt.events.*;
+import org.eclipse.swt.layout.*;
+import org.eclipse.swt.widgets.*;
+
+public class terminy {
+
+public static void main (String [] args) {
+	Display display = new Display ();
+	final Shell shell = new Shell (display);
+	shell.setLayout(new FillLayout());
+
+
+	shell.pack ();
+	shell.open ();
+	
+	while (!shell.isDisposed ()) {
+		if (!display.readAndDispatch ()) display.sleep ();
+	}
+	display.dispose ();
+}
+} 
