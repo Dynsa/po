@@ -76,10 +76,6 @@ public class test extends JFrame implements Serializable {
 			
 			
 			
-			
-			
-			
-			
 		/*
 		System.out.println("MENU");
 		System.out.println("1. Dodanie nowego pacjenta");
